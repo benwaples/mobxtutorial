@@ -1,16 +1,17 @@
 import React from "react";
-import Class from "./pages/Class";
-import Function from "./pages/Function";
 import styles from './App'
+import { SlideInput } from "./components/slideComponents/SlideInput";
+import { SlideStoreProvider } from "./stores/function/SlideStoreProvider";
+import { SlideList } from "./components/slideComponents/SlideList";
+import { useObserver } from "mobx-react";
 
 function App() {
   return (
-    <>
-      <h1 className={styles.title}>Mushrooms!!</h1>
-      <Function />
-      <h1>Let's have another list</h1>
-      <Class />
-    </>
+    <SlideStoreProvider>
+      <h1 className={styles.title}>Slides!!</h1>
+      <SlideInput />
+      {useObserver(() => <SlideList />)}
+    </SlideStoreProvider>
   );
 }
 
